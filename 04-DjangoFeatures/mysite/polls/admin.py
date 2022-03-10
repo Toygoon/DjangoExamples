@@ -13,7 +13,7 @@ class QuestionAdmin(admin.ModelAdmin):
             'classes' : ['collapse']}),
     ]
     
-class ChoiceInline(admin.StackedInline):
+class ChoiceInline(admin.TabularInline):
     model = Choice
     # Set how many empty fields are showed
     extra = 2
