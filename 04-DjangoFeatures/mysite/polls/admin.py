@@ -30,3 +30,8 @@ class QuestionAdmin(admin.ModelAdmin):
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Choice)
+
+# Add filter sidebar
+inlines = [ChoiceInline]
+list_display = ('question_text', 'pub_date')
+list_filter = ['pub_date']
