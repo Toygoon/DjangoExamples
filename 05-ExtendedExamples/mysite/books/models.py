@@ -2,6 +2,10 @@ from django.db import models
 
 # Create your models here.
 
+# Table relations;
+# ForeignKey = N:1
+# ManyToManyField = N:N
+# OneToOneField = 1:1
 class Book(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField('Author')
