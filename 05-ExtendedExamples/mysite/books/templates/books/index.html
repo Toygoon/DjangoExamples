@@ -1,0 +1,16 @@
+{% extends "base_books.html" %}
+
+{% block content %}
+    <h2>Books Management System</h2>
+    <ul>
+        {% for modelname in model_list %}
+        <!-- "add, lower" filter converts the 'modelname' into the lower character,
+        and adds "_list" postfix to the string -->
+        {% with "books:"|add:modelname|lower|add:"_list" as urlvar %}
+        <li>
+            <a href="{% url urlvar %}">{{ modelname }}</a>
+        </li>
+        {% endwith %}
+        {% endfor %}
+    </ul>
+{% endblock content %}
