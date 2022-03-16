@@ -3,10 +3,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.views import generic
 from polls.models import Question, Choice
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
 def vote(request, question_id):
+    logger.debug("vote().question_id: %s" % question_id)
     question = get_object_or_404(Question, pk=question_id)
     
     try:
@@ -24,11 +28,6 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-
-def results(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    
-    return render(request, 'polls/results.html', {'question': question})
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
